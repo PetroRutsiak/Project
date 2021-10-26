@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <list>
+
 enum HeroType
 {
     Goblin,
@@ -68,7 +69,7 @@ public:
     {
         damage = newdamage;
     }
-    Hero (int id = 3228,int damage = 30, std::string name ="Dragon")
+    Hero (int id,int damage, int health,  std::string name)
     {
         this->id = id;
         this->damage = damage;
@@ -93,13 +94,48 @@ public:
     }
     void Print()
     {
-        std::cout << this->getName() << " " << this->getID() << " " << this->getHealth() << "" << this->getDamage();
+        std::cout << this->getName() << " " << this->getID() << " " << this->getDamage() << " " << this->getHealth();
     }
 };
+class Player
+{
+    int id;
+    int rank;
+    std::string name;
 
+public:
+    int getID()
+    {
+        return id;
+    }
+    void setRank(int newrank)
+    {
+        rank = newrank;
+    }
+    int getRank()
+    {
+        return rank;
+    }
+    std::string getName()
+    {
+        return name;
+    }
+    Player(int id, int rank, std::string name)
+    {
+        this->id = id;
+        this->rank = rank;
+        this->name = name;
+    }
+    void Print()
+    {
+        std::cout << this->getName() << " " << this->getID() << " " << this->getRank();
+    }
+
+};
 int main()
 {
-    Hero* Dragon = new Hero(10,20,"Dragon");
-    Dragon->Print();
+    Hero* Dragon = new Hero(786, 70, 100, "Centaur");
+    Player* Dima = new Player(3, 7, " DimonTheSlayer");
+    Dima->Print();
     return 0;
 }
