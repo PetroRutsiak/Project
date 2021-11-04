@@ -124,7 +124,7 @@ public:
         std::this_thread::sleep_for(std::chrono::milliseconds(900));
         int randomid = rand() % 100;
         int randomrank = rand() % 100;
-        Player player(randomid, randomrank, " Sasha ");   
+        Player player(randomid, randomrank, " Arheim ");   
         return player;
     }
     void ShowPlayerInfo(Player player)
@@ -142,7 +142,7 @@ public:
         int randomid = rand() % 100;
         int randomHP = rand() % 100;
         int randomDamage = rand() % 100;
-        Hero hero(randomid, randomHP, randomDamage, "dora");
+        Hero hero(randomid, randomHP, randomDamage, " Orc ");
         return hero;
     }
     void ShowInfo(Hero hero)
@@ -169,7 +169,7 @@ public:
             Player Player = playermanager.CreatePlayer();
             player_list[i] = Player;
         }
-        Team first(" Radiant ", player_list, hero_list);
+        Team first(" Dire ", player_list, hero_list);
         return first;
     }
     void GetTeamInfo(Team first)
@@ -191,8 +191,9 @@ public:
 
 int main()
 {
-    TeamManager Dire;
-    Team Radiant = Dire.GenerateNewTeam();
-    Dire.GetTeamInfo(Radiant);
+    TeamManager newteam;
+    Team Radiant = newteam.GenerateNewTeam();
+    newteam.GetTeamInfo(Radiant);
+
     return 0;
 }
