@@ -70,23 +70,19 @@ class Hero
     int Health;
     int Damage;
 public:
-    void setId(int newid) { ID = newid; }
-    void setName(std::string newname) { Name = newname; }
-    void setHP(int newhealth) { Health = newhealth; }
-    void setDamage(int newdamage) { Damage = newdamage; }
-    Hero (int id,int damage, int health,  std::string name)
-    {
-        this->ID = id;
-        this->Damage = damage;
-        this->Name = name;
-        this->Health = health;
-    }
-    std::string getName() { return Name;}
-    int getID() { return ID; }
-    int getHealth() { return Health; }
-    int getDamage() { return Damage; }
+    int GetId() { return ID; }
+    std::string GetName() { return Name; }
+    int GetHP() { return Health; }
+    int GetDamage() { return Damage; }
 
-    Hero(){ }
+    int setHP(int hp)
+    {
+        this->Health = hp;
+    }
+
+    Hero(int id, std::string name, int hp, int damage)
+        :ID(ID), Name(name), Health(hp), Damage(damage) {}
+    Hero() {}
 };
 class Player
 {
@@ -94,23 +90,20 @@ class Player
     std::string Name;
     int Rank;
 public:
-    int getID() { return ID; }
-    void setRank(int newrank) { Rank = newrank; }
-    int getRank() { return Rank; }
-    std::string getName() { return Name; }
-    Player(int id, std::string name, int rank)
-    {
-        this->ID = id;
-        this->Rank = rank;
-        this->Name = name;
-    }
-    void SetRank(int newRank) 
-    {
+    int GetId() { return ID; }
+    std::string GetName() { return Name; }
+    int GetRank() { return Rank; }
+
+    void SetRank(int newRank) {
         if (newRank > 0)
             Rank = newRank;
         else Rank = 0;
     }
-    Player() { }
+
+
+    Player(int id, std::string name, int rank)
+        :ID(id), Name(name), Rank(rank) {}
+    Player() {}
 };
 class Team
 {
