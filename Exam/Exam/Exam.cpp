@@ -276,37 +276,37 @@ public:
 class TeamManager
 {
 public:
-    Team  GenerateNewTeam()
+    Team GenerateNewTeam(std::string TeamName)
     {
-        HeroManager heromanager;
-        PlayerManager playermanager;
-        Player player_list[5];
-        Hero hero_list[5];
+        PlayerManager playermanager = PlayerManager();
+        HeroManager heromanager = HeroManager();
+
+        Hero newHerolist[5];
+        Player newPlayerlist[5];
+
         for (int i = 0; i < 5; i++)
         {
-            Hero Hero = heromanager.CreateHero();
-            hero_list[i] = Hero;
+            newHerolist[i] = heromanager.CreateHero(newHerolist, 5);
+            newPlayerlist[i] = playermanager.CreatePlayer(newPlayerlist, 5);
         }
-        for (int i = 0; i < 5; i++)
-        {
-            Player Player = playermanager.CreatePlayer();
-            player_list[i] = Player;
-        }
-        Team first(" Dire ", player_list, hero_list);
-        return first;
+
+        Team team(TeamName, newHerolist, newPlayerlist);
+        return team;
     }
-    void GetTeamInfo(Team first)
-    {
-        std::cout << first.team_name << "\n";
-        for (int i = 0; i < 5; i++)
+    void GetTeamInfo(Team& team) {
+
+        PlayerManager playermanager = PlayerManager();
+        HeroManager heromanager = HeroManager();
+
+        std::cout << "Team: " << team.Name << std::endl;
+        for (auto elem : team.PlayerList)
         {
-            first.hero_list[i].Print();
-            std::cout << std::endl;
+            playermanager.ShowPlayerInfo(elem);
         }
-        for (int i = 0; i < 5; i++)
+        std::cout << std::endl << "Heroes" << std::endl;
+        for (auto elem : team.HeroList)
         {
-            first.player_list[i].Print();
-            std::cout << std::endl;
+            heromanager.ShowHeroInfo(elem);
         }
     }
 };
