@@ -4,45 +4,62 @@
 #include <ctime>
 #include <chrono>
 #include <thread>
-enum HeroType
+#include <algorithm>
+#include <cstdlib>
+
+std::string getHeroName(int number)
 {
-    Goblin,
-    Orc,
-    Dragon,
-    Ogre,
-    Skeleton,
-    Troll,
-    Vempire,
-    Zombie,
-    Bane,
-    Basilisk,
-    Beelzebub,
-    Bigfoot,
-    Boogeyman,
-    Centaur,
-    Chimera,
-    Chuckie
-};
-std::string getTypeString(HeroType m_type)
-{
-    switch (m_type)
+    switch (number)
     {
-    case Goblin:return "Goblin";
-    case Orc: return "Orc";
-    case Dragon: return "Dragon";
-    case Ogre: return "Ogre";
-    case Skeleton: return "Skeleton";
-    case Troll: return "Troll";
-    case Vempire: return "Vempire";
-    case Zombie: return "Zombie";
-    case Bane:return "Bane";
-    case Basilisk:return "Basilisk";
-    case Beelzebub:return "Beelzebub";
-    case Bigfoot:return "Bigfoot";
-    case Boogeyman:return "Boogeyman";
-    case Centaur:return "Centaur";
-    case Chimera:return "Chimera";
-    case Chuckie:return "Chuckie";
+    case 0: return "Abaddon";
+    case 1: return "Axe";
+    case 2: return "Dragon Knight";
+    case 3: return "OgreMage";
+    case 4: return "SkeletonKing";
+    case 5: return "Troll";
+    case 6: return "Viper";
+    case 7: return "Underlord";
+    case 8: return "Bane";
+    case 9: return "Doom";
+    case 10:return "Disruptor";
+    case 11:return "Enigma";
+    case 12:return "Enigma";
+    case 13:return "CentaurWarruner";
+    case 14:return "Lich";
+    case 15:return "Lina";
+    case 16:return "Sven";
+    case 17:return "Naix";
+    case 18:return "Invoker";
+    case 19:return "Legion";
+    case 20:return "Meepo";
+    }
+    return"Error!";
+}
+std::string getPlayerName(int number)
+{
+    switch (number)
+    {
+    case 0: return "Fireman";
+    case 1: return "Eazy";
+    case 2: return "Darius";
+    case 3: return "Sensei";
+    case 4: return "Senpai";
+    case 5: return "S1mple";
+    case 6: return "Niko";
+    case 7: return "Reeper";
+    case 8: return "Javelin";
+    case 9: return "Joe";
+    case 10:return "Pito";
+    case 11:return "NoobMaster";
+    case 12:return "WoopWoop";
+    case 13:return "Taraslav";
+    case 14:return "Sein";
+    case 15:return "Kuyol";
+    case 16:return "Kola";
+    case 17:return "Maximus";
+    case 18:return "Paralyzed";
+    case 19:return "Arheim";
+    case 20:return "Haskie";
     }
     return"Error!";
 }
