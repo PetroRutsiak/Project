@@ -65,53 +65,52 @@ std::string getPlayerName(int number)
 }
 class Hero
 {
-    int id;
-    std::string name;
-    int health;
-    int damage;
+    int ID;
+    std::string Name;
+    int Health;
+    int Damage;
 public:
-    void setId(int newid) { id = newid; }
-    void setName(std::string newname) { name = newname; }
-    void setHP(int newhealth) { health = newhealth; }
-    void setDamage(int newdamage) { damage = newdamage; }
+    void setId(int newid) { ID = newid; }
+    void setName(std::string newname) { Name = newname; }
+    void setHP(int newhealth) { Health = newhealth; }
+    void setDamage(int newdamage) { Damage = newdamage; }
     Hero (int id,int damage, int health,  std::string name)
     {
-        this->id = id;
-        this->damage = damage;
-        this->name = name;
-        this->health = health;
+        this->ID = id;
+        this->Damage = damage;
+        this->Name = name;
+        this->Health = health;
     }
-    std::string getName() { return name;}
-    int getID() { return id; }
-    int getHealth() { return health; }
-    int getDamage() { return damage; }
+    std::string getName() { return Name;}
+    int getID() { return ID; }
+    int getHealth() { return Health; }
+    int getDamage() { return Damage; }
+
     Hero(){ }
-    void Print()
-    {
-        std::cout << this->getName() << " " << this->getID() << " " << this->getDamage() << " " << this->getHealth();
-    }
 };
 class Player
 {
-    int id;
-    int rank;
-    std::string name;
+    int ID;
+    std::string Name;
+    int Rank;
 public:
-    int getID() { return id; }
-    void setRank(int newrank) { rank = newrank; }
-    int getRank() { return rank; }
-    std::string getName() { return name; }
+    int getID() { return ID; }
+    void setRank(int newrank) { Rank = newrank; }
+    int getRank() { return Rank; }
+    std::string getName() { return Name; }
     Player(int id, int rank, std::string name)
     {
-        this->id = id;
-        this->rank = rank;
-        this->name = name;
+        this->ID = id;
+        this->Rank = rank;
+        this->Name = name;
+    }
+    void SetRank(int newRank) 
+    {
+        if (newRank > 0)
+            Rank = newRank;
+        else Rank = 0;
     }
     Player() { }
-    void Print()
-    {
-        std::cout << this->getName() << " " << this->getID() << " " << this->getRank();
-    }
 };
 class Team
 {
