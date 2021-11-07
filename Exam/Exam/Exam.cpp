@@ -13,9 +13,9 @@ std::string getHeroName(int number)
     {
     case 0: return "Abaddon";
     case 1: return "Axe";
-    case 2: return "Dragon Knight";
+    case 2: return "Knight";
     case 3: return "OgreMage";
-    case 4: return "SkeletonKing";
+    case 4: return "King";
     case 5: return "Troll";
     case 6: return "Viper";
     case 7: return "Underlord";
@@ -24,7 +24,7 @@ std::string getHeroName(int number)
     case 10:return "Disruptor";
     case 11:return "Enigma";
     case 12:return "Enigma";
-    case 13:return "CentaurWarruner";
+    case 13:return "Warruner";
     case 14:return "Lich";
     case 15:return "Lina";
     case 16:return "Sven";
@@ -377,11 +377,53 @@ public:
         }
     }
 };
+class GameManager
+{
+    std::list <Session> GameSessions;
+public:
+    void GameSession()
+    {
+        TeamManager teamManager = TeamManager();
+        Team firstteam = teamManager.GenerateNewTeam("First ");
+        Team secondteam = teamManager.GenerateNewTeam("Second ");
+
+        Session session = Session();
+        session.TeamOne = firstteam;
+        session.TeamTwo = secondteam;
+        std::cout << "Start Game" << std::endl;
+
+        teamManager.GetTeamInfo(session.TeamOne);
+        std::cout << std::endl;
+
+        teamManager.GetTeamInfo(session.TeamTwo);
+        std::cout << std::endl;
+
+        session.CalculateWinner();
+        std::cout << "Game Result" << std::endl;
+        std::cout << "Winner" << std::endl;
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+        teamManager.GetTeamInfo(session.Winner);
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+        teamManager.GetTeamInfo(session.TeamOne);
+        std::cout << std::endl;
+
+        teamManager.GetTeamInfo(session.TeamTwo);
+        std::cout << std::endl;
+
+        GameSessions.push_back(session);
+    }
+};
 
 
 int main()
 {
-    
+    GameManager gamemanage = GameManager();
+    gamemanage.GameSession();
+    return 0;
 
     return 0;
 }
