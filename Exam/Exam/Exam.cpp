@@ -124,37 +124,154 @@ public:
 class PlayerManager
 {
 public:
-    Player CreatePlayer()
+    bool isNameExist(Player playerlist[], int lenght, std::string name)
     {
-        srand (time (NULL));
-        std::this_thread::sleep_for(std::chrono::milliseconds(900));
-        int randomid = rand() % 100;
-        int randomrank = rand() % 100;
-        Player player(randomid, randomrank, " Arheim ");   
+        for (int i = 0; i < lenght; i++)
+        {
+            if (playerlist[i].GetName() == name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    void  ShowPlayerInfo(Player  player)
+    {
+
+        std::cout
+            << "\tName: " << player.GetName()
+            << "\tRank: " << player.GetRank() << std::endl;
+
+    }
+    Player* DeletePlayer(Player playerlist[], int lenght, int pos)
+    {
+        Player* new_playerlist = new Player[lenght - 1];
+
+        for (int i = 0; i < lenght - 1; i++)
+        {
+            if (pos >= i)
+            {
+                new_playerlist[i] = playerlist[i + 1];
+                continue;
+            }
+            new_playerlist[i] = playerlist[i];
+        }
+
+        return new_playerlist;
+    }
+    Player CreatePlayer(Player* playerlist, int lenght)
+    {
+        srand((unsigned)time(NULL));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        int randomPlayerName = rand() % 20;
+        int randomPlayerRank = rand() % 1001;
+        int randomID = rand() % 1001;
+
+        std::string Name = getPlayerName(randomPlayerName);
+        while (isNameExist(playerlist, lenght, Name))
+        {
+            Name = getPlayerName(randomPlayerName);
+        }
+        Player player(randomID, Name, randomPlayerRank);
+
         return player;
     }
-    void ShowPlayerInfo(Player player)
+    Player* GetPlayerByName(Player playerlist[], int lenght, std::string name)
     {
-        player.Print();
+        for (int i = 0; i < lenght; i++)
+        {
+            if (playerlist[i].GetName() == name)
+                return &playerlist[i];
+        }
+        return nullptr;
+    }
+
+    Player* GetPlayerById(Player playerlist[], int lenght, int id)
+    {
+        for (int i = 0; i < lenght; i++)
+        {
+            if (playerlist[i].GetId() == id)
+                return &playerlist[i];
+        }
+        return nullptr;
     }
 };
 class HeroManager
 {
 public:
-    Hero CreateHero()
+    bool isNameExist(Hero herolist[], int lenght, std::string name)
     {
-        srand(time(NULL));
-        std::this_thread::sleep_for(std::chrono::milliseconds(900));
-        int randomid = rand() % 100;
-        int randomHP = rand() % 100;
-        int randomDamage = rand() % 100;
-        Hero hero(randomid, randomHP, randomDamage, " Orc ");
+        for (int i = 0; i < lenght; i++)
+        {
+            if (herolist[i].GetName() == name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    void static  ShowHeroInfo(Hero  hero)
+    {
+        std::cout
+            << "\tName: " << hero.GetName()
+            << "\tHP: " << hero.GetHP()
+            << "\tDamage: " << hero.GetDamage() << std::endl;
+
+    }
+    Hero* DeleteHero(Hero herolist[], int lenght, int  pos)
+    {
+        Hero* new_herolist = new Hero[lenght - 1];
+
+        for (int i = 0; i < lenght - 1; i++)
+        {
+            if (pos >= i)
+            {
+                new_herolist[i] = herolist[i + 1];
+                continue;
+            }
+            new_herolist[i] = herolist[i];
+        }
+        return new_herolist;
+    }
+    Hero  CreateHero(Hero* herolist, int lenght)
+    {
+        srand((unsigned)time(NULL));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+        int randomHeroName = rand() % 20;
+        int randomHeroHealth = rand() % 101;
+        int randomHeroDamage = rand() % 101;
+        int randomId = rand() % 1001;
+
+        std::string Name = getHeroName(randomHeroName);
+        while (isNameExist(herolist, lenght, Name))
+        {
+            Name = getHeroName(randomHeroName);
+        }
+        Hero hero(randomId, Name, randomHeroHealth, randomHeroDamage);
+
         return hero;
     }
-    void ShowInfo(Hero hero)
+    Hero* GetHeroByName(Hero herolist[], int lenght, std::string name)
     {
-        hero.Print();
+        for (int i = 0; i < lenght; i++)
+        {
+            if (herolist[i].GetName() == name)
+                return &herolist[i];
+        }
+        return nullptr;
     }
+
+    Hero* GetHeroById(Hero herolist[], int lenght, int id)
+    {
+        for (int i = 0; i < lenght; i++)
+        {
+            if (herolist[i].GetId() == id)
+                return &herolist[i];
+        }
+        return nullptr;
+    }
+   
 };
 class TeamManager
 {
