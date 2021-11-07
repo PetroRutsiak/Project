@@ -310,13 +310,78 @@ public:
         }
     }
 };
+class Session {
+    time_t StartTime = time(0);
+public:
+    Team Winner;
+    Team TeamOne;
+    Team TeamTwo;
+    void CalculateWinner()
+    {
+        int first_team_hp = GetTeamHP(TeamOne);
+        int second_team_hp = GetTeamHP(TeamTwo);
+
+        int first_team_damage = GetTeamDamage(TeamOne);
+        int second_team_damage = GetTeamDamage(TeamTwo);
+
+        if (second_team_hp - first_team_damage > first_team_hp - second_team_damage)
+        {
+            AddRank(TeamTwo);
+            RemoveRank(TeamOne);
+
+            Winner = TeamTwo;
+
+        }
+        else
+        {
+
+            AddRank(TeamOne);
+            RemoveRank(TeamTwo);
+
+            Winner = TeamOne;
+        }
+    }
+
+    int GetTeamHP(Team& team)
+    {
+        int SumHp = 0;
+        for (auto hero : team.HeroList)
+        {
+            SumHp += hero.GetHP();
+        }
+        return SumHp;
+    }
+    int GetTeamDamage(Team& team)
+    {
+        int SumDamage = 0;
+        for (auto hero : team.HeroList)
+        {
+            SumDamage += hero.GetDamage();
+        }
+        return SumDamage;
+    }
+
+    void AddRank(Team& winnerTeam)
+    {
+        for (auto& player : winnerTeam.PlayerList)
+        {
+            player.SetRank(player.GetRank() + 25);
+        }
+    }
+
+    void RemoveRank(Team& looserTeam)
+    {
+        for (auto& player : looserTeam.PlayerList)
+        {
+            player.SetRank(player.GetRank() - 25);
+        }
+    }
+};
 
 
 int main()
 {
-    TeamManager newteam;
-    Team Radiant = newteam.GenerateNewTeam();
-    newteam.GetTeamInfo(Radiant);
+    
 
     return 0;
 }
