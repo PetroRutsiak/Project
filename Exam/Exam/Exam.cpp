@@ -98,7 +98,7 @@ public:
     void setRank(int newrank) { Rank = newrank; }
     int getRank() { return Rank; }
     std::string getName() { return Name; }
-    Player(int id, int rank, std::string name)
+    Player(int id, std::string name, int rank)
     {
         this->ID = id;
         this->Rank = rank;
@@ -115,21 +115,18 @@ public:
 class Team
 {
 public:
-    std::string team_name;
-    Player  player_list[5];
-    Hero hero_list[5];
-    Team(std::string team_name, Player player_list[5], Hero hero_list[5])
-    {
-        this->team_name = team_name;
+    std::string Name;
+    Hero HeroList[5];
+    Player PlayerList[5];
+    Team(std::string name) :Name(name) {}
+    Team(std::string name, Hero heroList[5], Player playerList[5]) :Name(name) {
         for (int i = 0; i < 5; i++)
         {
-            this->player_list[i] = player_list[i];
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            this->hero_list[i] = hero_list[i];
+            HeroList[i] = heroList[i];
+            PlayerList[i] = playerList[i];
         }
     }
+    Team() {}
 };
 class PlayerManager
 {
