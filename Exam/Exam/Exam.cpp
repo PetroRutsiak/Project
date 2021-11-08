@@ -63,6 +63,7 @@ std::string getPlayerName(int number)
     }
     return"Error!";
 }
+
 class Hero
 {
     int ID;
